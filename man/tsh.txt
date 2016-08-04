@@ -44,4 +44,4 @@ EENNVVIIRROONNMMEENNTT
 EEXXIITT SSTTAATTUUSS
      The ttsshh utility exits 0 on success, and >0 if an error occurs.
 
-OpenBSD 6.0                     August 4, 2016                     OpenBSD 6.0
+Unix                            August 4, 2016                            Unix
