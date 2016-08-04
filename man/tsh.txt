@@ -1,0 +1,37 @@
+Run a shell for testing things.
+
+Starts a new shell with mimimal environment in a work directory.
+The shell will have LC_ALL=C set in its environment.
+
+Usage:
+
+    ./bin/tsh [-d] [-s shell] [dir]
+
+    ./bin/tsh -h
+
+Options:
+
+    -d          Delete the work directory when exiting.
+
+                This is done using "rm -rf dir" where 'dir' is the
+                work directory specified on the command line, or the
+                temporary directory that was created if no directory was
+                specified.
+
+                If the HUP (hangup) signal is received, the work
+                directory will *not* be deleted when exiting.
+
+    -h          Displays this usage information.
+
+    -s shell    Start shell 'shell'.
+
+                The 'shell' is required to be listed in "/etc/shells".
+
+                Defaults to "/bin/sh".
+
+    dir         Use work directory 'dir'.
+
+                If 'dir' does not exist, it will be created.
+
+                An empty temporary work directory will be created if no
+                directory is specified.
