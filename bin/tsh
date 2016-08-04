@@ -51,8 +51,8 @@ shift "$(( OPTIND - 1 ))"
 opt_dir="$1"
 
 # Validate the shell:
-# Make sure that the specified shell in "$opt_sh" is listed in
-# "/etc/shells".  Complain and teminate otherwise.
+# Make sure that the specified shell is listed in "/etc/shells".
+# Complain and terminate otherwise.
 
 if [ "$opt_sh" != "/bin/sh" ]; then
     if ! grep -q -x -F "$opt_sh" "/etc/shells"; then
@@ -62,6 +62,8 @@ if [ "$opt_sh" != "/bin/sh" ]; then
         exit 1
     fi
 fi
+
+# Set up work directory.
 
 if [ -z "$opt_dir" ]; then
     opt_dir="$( mktemp -d )"
@@ -77,6 +79,8 @@ fi
 
 trap 'sighup_handler' HUP
 trap 'sigexit_handler' EXIT
+
+# Fire things up.
 
 printf "Starting new shell '%s' in '%s'\n" "$opt_sh" "$opt_dir"
 ( cd "$opt_dir" && env -i LC_ALL=C "$opt_sh" )
