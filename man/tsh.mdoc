@@ -23,9 +23,9 @@ utility starts a new shell with minimal environment in a work directory.
 Delete the work directory when exiting.
 .sp
 This is done using
-.Qq rm -rf dir
+.Qq rm Fl rf Ar dir
 where
-.Qq dir
+.Ar dir
 is the work directory specified on the command line, or the temporary
 directory that was created if no directory was specified.
 .sp
@@ -39,19 +39,19 @@ be deleted when exiting.
 Display brief usage information.
 .It Fl s Ar shell
 Start shell
-.Qq shell .
+.Ar shell .
 .sp
 The shell is required to be an absolute path listed in
-.Qq /etc/shells .
+.Pa /etc/shells .
 .sp
 Defaults to
-.Qq /bin/sh .
+.Pa /bin/sh .
 .It Ar dir
 Use work directory
-.Qq dir .
+.Ar dir .
 .sp
 If
-.Qq dir
+.Ar dir
 does not already exist, it will be created.
 .sp
 An empty temporary work directory will be created if no directory is
