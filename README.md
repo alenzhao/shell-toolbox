@@ -25,17 +25,20 @@ on the [Unix & Linux](http://unix.stackexchange.com/) and
 
 - `master`:
     "I believe that this code is working and I think that the
-    documentation is up to date."
+    documentation is up to date."  I'll merge in `develop` here whenever
+    I feel that the current state of that branch is worth it.
 
 - `develop`:
-    Development happens here, or possibly on a feature branch off of
-    this branch.  Code on `develop` may work and should at least pass
-    ShellCheck testing.  Documentation may be lagging but if it's there
-    it ought to be mostly correct.
+    Development happens here, or possibly on a feature branch off
+    of this branch.  Code on `develop` may work and should at least
+    pass [ShellCheck](http://www.shellcheck.net/) without issue.
+    Documentation may be lagging but if it's there it ought to be mostly
+    correct.
 
 - `feature/XXX`:
-    Feature branches may contain broken and/or dangerous code in
-    development, or documentation which may be misleading or missing.
+    Feature branches may contain unfinished, broken and/or dangerous
+    code in development, or documentation which may be misleading or
+    simply missing.
 
 ## Current tools
 
