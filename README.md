@@ -4,8 +4,8 @@ This GitHub repository contains a small selection of tools that may be
 useful to people doing shell-script development in a Unix environment.
 
 Some of these shell scripts and shell functions come from answering
-questions on the Unix & Linux and StackOverflow forums at Stack
-Exchange.
+questions on the [Unix & Linux](http://unix.stackexchange.com/) and
+[Stack Overflow](http://stackoverflow.com/) forums at Stack Exchange.
 
 ## Repository layout
 
@@ -16,8 +16,8 @@ Exchange.
     Contains `ksh` shell functions.
 
 - `man`<br>
-    Contains manuals for the executables and functions in mandoc and/or
-    plain text formats.
+    Contains manuals for the executables and functions in mandoc, text,
+    HTML and PDF formats.
 
 ## Branches
 
