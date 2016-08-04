@@ -51,32 +51,44 @@ shift "$(( OPTIND - 1 ))"
 opt_dir="$1"
 
 # Validate the shell:
-# Make sure that the specified shell in "$opt_sh" is listed in
-# "/etc/shells".  Complain and teminate otherwise.
+# Make sure that the specified shell is listed in "/etc/shells".
+# Complain and terminate otherwise.
 
 if [ "$opt_sh" != "/bin/sh" ]; then
     if ! grep -q -x -F "$opt_sh" "/etc/shells"; then
         printf "Invalid shell '%s'\n" "$opt_sh"
         printf "Valid shells:\n"
-        awk '!/^#/ { printf("\t%s\n", $0) }' "/etc/shells"
+        awk '!/^#/ && !/^ *$/ { printf("\t%s\n", $0) }' "/etc/shells"
         exit 1
     fi
 fi
 
+# Set up work directory.
+
 if [ -z "$opt_dir" ]; then
     opt_dir="$( mktemp -d )"
-    printf "Created temporary work directory: '%s'\n" "$opt_dir"
-    if [ "$opt_delete" -eq 1 ]; then
-        printf "This directory will be deleted.\n"
-        printf "Cancel deletion with: kill -s HUP %d\n" "$$"
-    fi
 elif [ ! -d "$opt_dir" ]; then
     mkdir -p "$opt_dir"
-    printf "Created work directory: '%s'\n" "$opt_dir"
 fi
+
+if [ ! -d "$opt_dir" ]; then
+    printf "Failed to create/locate work directory\n"
+    exit 1
+fi
+
+printf "Using work directory: '%s'\n" "$opt_dir"
+
+if [ "$opt_delete" -eq 1 ]; then
+    printf "This directory will be deleted!\n"
+    printf "Cancel deletion with: kill -s HUP %d\n" "$$"
+fi
+
+# Install signal handlers.
 
 trap 'sighup_handler' HUP
 trap 'sigexit_handler' EXIT
+
+# Fire things up.
 
 printf "Starting new shell '%s' in '%s'\n" "$opt_sh" "$opt_dir"
 ( cd "$opt_dir" && env -i LC_ALL=C "$opt_sh" )
