@@ -78,5 +78,5 @@ fi
 trap 'sighup_handler' HUP
 trap 'sigexit_handler' EXIT
 
-printf "Starting new shell '$opt_sh' in '$opt_dir'\n"
+printf "Starting new shell '%s' in '%s'\n" "$opt_sh" "$opt_dir"
 ( cd "$opt_dir" && env -i LC_ALL=C "$opt_sh" )
