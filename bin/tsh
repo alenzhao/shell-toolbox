@@ -1,0 +1,82 @@
+#!/bin/sh
+
+scriptname="$0"
+
+show_usage () {
+    cat <<USAGE_END
+Usage:
+    $scriptname [-d] [-s shell] [dir]
+    $scriptname -h
+USAGE_END
+}
+
+sigexit_handler () {
+    # Signal handler for EXIT.
+    # Will remove the work directory "$opt_dir" if so requested.
+
+    if [ -n "$opt_dir" ]; then
+        if [ "$opt_delete" -eq 1 ]; then
+            printf "Removing work directory '%s'\n" "$opt_dir"
+            rm -rf "$opt_dir"
+        else
+            printf "Leaving work dir '%s' as it is.\n" "$opt_dir"
+        fi
+    fi
+}
+
+sighup_handler () {
+    # Signal handler for HUP.
+    # Will set opt_delete=0.
+
+    opt_delete=0
+    printf "SIGHUP received.\n"
+}
+
+opt_dir=""
+opt_sh="/bin/sh"
+opt_delete=0
+
+while getopts 'dhs:w:' opt; do
+    case "$opt" in
+        d)  opt_delete=1        ;;
+        h)  show_usage;
+            exit 0              ;;
+        s)  opt_sh="$OPTARG"    ;;
+        *)  show_usage;
+            exit 1              ;;
+    esac
+done
+
+shift "$(( OPTIND - 1 ))"
+opt_dir="$1"
+
+# Validate the shell:
+# Make sure that the specified shell in "$opt_sh" is listed in
+# "/etc/shells".  Complain and teminate otherwise.
+
+if [ "$opt_sh" != "/bin/sh" ]; then
+    if ! grep -q -x -F "$opt_sh" "/etc/shells"; then
+        printf "Invalid shell '%s'\n" "$opt_sh"
+        printf "Valid shells:\n"
+        awk '!/^#/ { printf("\t%s\n", $0) }' "/etc/shells"
+        exit 1
+    fi
+fi
+
+if [ -z "$opt_dir" ]; then
+    opt_dir="$( mktemp -d )"
+    printf "Created temporary work directory: '%s'\n" "$opt_dir"
+    if [ "$opt_delete" -eq 1 ]; then
+        printf "This directory will be deleted.\n"
+        printf "Cancel deletion with: kill -s HUP %d\n" "$$"
+    fi
+elif [ ! -d "$opt_dir" ]; then
+    mkdir -p "$opt_dir"
+    printf "Created work directory: '%s'\n" "$opt_dir"
+fi
+
+trap 'sighup_handler' HUP
+trap 'sigexit_handler' EXIT
+
+printf "Starting new shell '%s' in '%s'\n" "$opt_sh" "$opt_dir"
+( cd "$opt_dir" && env -i LC_ALL=C "$opt_sh" )

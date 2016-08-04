@@ -1,0 +1,47 @@
+TSH(1)                      General Commands Manual                     TSH(1)
+
+NNAAMMEE
+     ttsshh – Set up a minimal shell environment ("test shell").
+
+SSYYNNOOPPSSIISS
+     ttsshh [--dd] [--ss _s_h_e_l_l] [_d_i_r]
+     ttsshh --hh
+
+DDEESSCCRRIIPPTTIIOONN
+     The ttsshh utility starts a new shell with minimal environment in a work
+     directory.
+
+     --dd      Delete the work directory when exiting.
+
+             This is done using "rm -rf dir" where "dir" is the work directory
+             specified on the command line, or the temporary directory that
+             was created if no directory was specified.
+
+             If the HUP (hangup) signal is received, the work directory will
+             _n_o_t be deleted when exiting.
+
+     --hh      Displays brief usage information.
+
+     --ss _s_h_e_l_l
+             Starts shell "shell".
+
+             The shell is required to be an absolute path listed in
+             "/etc/shells".
+
+             Defaults to "/bin/sh".
+
+     _d_i_r     Use work directory "dir".
+
+             If "dir" does not already exist, it will be created.
+
+             An empty temporary work directory will be created if no directory
+             is specified.
+
+EENNVVIIRROONNMMEENNTT
+     The environment is cleared and the invoked shell will have LC_ALL set to
+     "C" by this utility.
+
+EEXXIITT SSTTAATTUUSS
+     The ttsshh utility exits 0 on success, and >0 if an error occurs.
+
+Unix                            August 4, 2016                            Unix

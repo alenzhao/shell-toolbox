@@ -1,0 +1,70 @@
+.Dd $Mdocdate$
+.Dt TSH 1
+.Os
+.Sh NAME
+.Nm tsh
+.Nd Set up a minimal shell environment
+.Po
+.Qq test shell
+.Pc .
+.Sh SYNOPSIS
+.Nm tsh
+.Op Fl d
+.Op Fl s Ar shell
+.Op Ar dir
+.Nm tsh
+.Fl h
+.Sh DESCRIPTION
+The
+.Nm
+utility starts a new shell with minimal environment in a work directory.
+.Bl -tag -width Ds
+.It Fl d
+Delete the work directory when exiting.
+.sp
+This is done using
+.Qq rm -rf dir
+where
+.Qq dir
+is the work directory specified on the command line, or the temporary
+directory that was created if no directory was specified.
+.sp
+If the HUP
+.Pq hangup
+signal is received, the work
+directory will
+.Em not
+be deleted when exiting.
+.It Fl h
+Displays brief usage information.
+.It Fl s Ar shell
+Starts shell
+.Qq shell .
+.sp
+The shell is required to be an absolute path listed in
+.Qq /etc/shells .
+.sp
+Defaults to
+.Qq /bin/sh .
+.It Ar dir
+Use work directory
+.Qq dir .
+.sp
+If
+.Qq dir
+does not already exist, it will be created.
+.sp
+An empty temporary work directory will be created if no directory is
+specified.
+.El
+.Sh ENVIRONMENT
+The environment is cleared and the invoked shell will have
+.Ev LC_ALL
+set to
+.Qq C
+by this utility.
+.\" .Sh FILES
+.Sh EXIT STATUS
+.Ex -std
+.\" .Sh EXAMPLES
+.\" .Sh DIAGNOSTICS
