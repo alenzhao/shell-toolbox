@@ -58,7 +58,7 @@ if [ "$opt_sh" != "/bin/sh" ]; then
     if ! grep -q -x -F "$opt_sh" "/etc/shells"; then
         printf "Invalid shell '%s'\n" "$opt_sh"
         printf "Valid shells:\n"
-        awk '!/^#/ { printf("\t%s\n", $0) }' "/etc/shells"
+        awk '!/^#/ && !/^ *$/ { printf("\t%s\n", $0) }' "/etc/shells"
         exit 1
     fi
 fi
