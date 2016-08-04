@@ -20,10 +20,10 @@ DDEESSCCRRIIPPTTIIOONN
              If the HUP (hangup) signal is received, the work directory will
              _n_o_t be deleted when exiting.
 
-     --hh      Displays brief usage information.
+     --hh      Display brief usage information.
 
      --ss _s_h_e_l_l
-             Starts shell "shell".
+             Start shell "shell".
 
              The shell is required to be an absolute path listed in
              "/etc/shells".
