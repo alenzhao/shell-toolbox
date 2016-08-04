@@ -1,37 +1,47 @@
-Run a shell for testing things.
+TSH(1)                      General Commands Manual                     TSH(1)
 
-Starts a new shell with mimimal environment in a work directory.
-The shell will have LC_ALL=C set in its environment.
+NNaammee
+     ttsshh – Set up a minimal shell envirenment ("test shell").
 
-Usage:
+SSYYNNOOPPSSIISS
+     ttsshh [--dd] [--ss _s_h_e_l_l] [dir]
+     ttsshh --hh
 
-    ./bin/tsh [-d] [-s shell] [dir]
+DDEESSCCRRIIPPTTIIOONN
+     The ttsshh utility starts a new shell with minimal environment in a work
+     directory.
 
-    ./bin/tsh -h
+     --dd      Delete the work directory when exiting.
 
-Options:
+             This is done using “rm -rf dir” where “dir” is the work directory
+             specified on the command line, or the temporary directory that
+             was created if no directory was specified.
 
-    -d          Delete the work directory when exiting.
+             If the HUP (hangup) signal is received, the work directory will
+             _n_o_t be deleted when exiting.
 
-                This is done using "rm -rf dir" where 'dir' is the
-                work directory specified on the command line, or the
-                temporary directory that was created if no directory was
-                specified.
+     --hh      Displays brief usage information.
 
-                If the HUP (hangup) signal is received, the work
-                directory will *not* be deleted when exiting.
+     --ss _s_h_e_l_l
+             Starts shell “shell”.
 
-    -h          Displays this usage information.
+             The shell is required to be an absolute path listed in
+             “/etc/shells”.
 
-    -s shell    Start shell 'shell'.
+             Defaults to “/bin/sh”.
 
-                The 'shell' is required to be listed in "/etc/shells".
+     _d_i_r     Use work directory “dir”.
 
-                Defaults to "/bin/sh".
+             If “dir” does not already exist, it will be created.
 
-    dir         Use work directory 'dir'.
+             An empty temporary work directory will be created if no directory
+             is specified.
 
-                If 'dir' does not exist, it will be created.
+EENNVVIIRROONNMMEENNTT
+     The environment is cleared and the invoked shell will have LC_ALL set to
+     “C” by this utility.
 
-                An empty temporary work directory will be created if no
-                directory is specified.
+EEXXIITT SSTTAATTUUSS
+     The ttsshh utility exits 0 on success, and >0 if an error occurs.
+
+OpenBSD 6.0                     August 4, 2016                     OpenBSD 6.0
