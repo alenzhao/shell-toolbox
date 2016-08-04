@@ -4,12 +4,6 @@ scriptname="$0"
 
 show_usage () {
     cat <<USAGE_END
-
-Run a shell for testing things.
-
-Starts a new shell with mimimal environment in a work directory.
-The shell will have LC_ALL=C set in its environment.
-
 Usage:
 
     $scriptname [-d] [-s shell] [dir]
