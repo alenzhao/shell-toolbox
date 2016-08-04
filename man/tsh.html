@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
+table.head, table.foot { width: 100%; }
+td.head-rtitle, td.foot-os { text-align: right; }
+td.head-vol { text-align: center; }
+table.foot td { width: 50%; }
+table.head td { width: 33%; }
+div.spacer { margin: 1em 0; }
+</style>
+<title>
+TSH(1)</title>
+</head>
+<body>
+<div class="mandoc">
+<table class="head">
+<tbody>
+<tr>
+<td class="head-ltitle">
+TSH(1)</td>
+<td class="head-vol">
+General Commands Manual</td>
+<td class="head-rtitle">
+TSH(1)</td>
+</tr>
+</tbody>
+</table>
+<div class="section">
+<h1 id="Name">Name</h1> <b class="name">tsh</b> &#8212; <span class="desc">Set up a minimal shell envirenment (&quot;test shell&quot;).</span></div>
+<div class="section">
+<h1 id="SYNOPSIS">SYNOPSIS</h1><table class="synopsis">
+<col style="width: 3.00ex;"/>
+<col/>
+<tbody>
+<tr>
+<td>
+<b class="name">tsh</b></td>
+<td>
+[<span class="opt"><b class="flag">-d</b></span>] [<span class="opt"><b class="flag">-s</b> <i class="arg">shell</i></span>] [<span class="opt">dir</span>]</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<table class="synopsis">
+<col style="width: 3.00ex;"/>
+<col/>
+<tbody>
+<tr>
+<td>
+<b class="name">tsh</b></td>
+<td>
+<b class="flag">-h</b></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h1 id="DESCRIPTION">DESCRIPTION</h1> The <b class="name">tsh</b> utility starts a new shell with minimal environment in a work directory.<dl style="margin-top: 0.00em;margin-bottom: 0.00em;" class="list list-tag">
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">-d</b></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Delete the work directory when exiting.<div style="height: 1.00em;">
+&#160;</div>
+This is done using &#8220;rm -rf dir&#8221; where &#8220;dir&#8221; is the work directory specified on the command line, or the temporary directory that was created if no directory was specified.<div style="height: 1.00em;">
+&#160;</div>
+If the HUP (hangup) signal is received, the work directory will <span class="emph">not</span> be deleted when exiting.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">-h</b></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Displays brief usage information.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">-s</b> <i class="arg">shell</i></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Starts shell &#8220;shell&#8221;.<div style="height: 1.00em;">
+&#160;</div>
+The shell is required to be an absolute path listed in &#8220;/etc/shells&#8221;.<div style="height: 1.00em;">
+&#160;</div>
+Defaults to &#8220;/bin/sh&#8221;.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<i class="arg">dir</i></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Use work directory &#8220;dir&#8221;.<div style="height: 1.00em;">
+&#160;</div>
+If &#8220;dir&#8221; does not already exist, it will be created.<div style="height: 1.00em;">
+&#160;</div>
+An empty temporary work directory will be created if no directory is specified.</dd>
+</dl>
+</div>
+<div class="section">
+<h1 id="ENVIRONMENT">ENVIRONMENT</h1> The environment is cleared and the invoked shell will have <span class="env">LC_ALL</span> set to &#8220;C&#8221; by this utility.</div>
+<div class="section">
+<h1 id="EXIT_STATUS">EXIT STATUS</h1> The <b class="utility">tsh</b> utility exits&#160;0 on success, and&#160;&gt;0 if an error occurs.</div>
+<table class="foot">
+<tbody>
+<tr>
+<td class="foot-date">
+August 4, 2016</td>
+<td class="foot-os">
+OpenBSD 6.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
+
