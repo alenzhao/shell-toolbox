@@ -67,15 +67,23 @@ fi
 
 if [ -z "$opt_dir" ]; then
     opt_dir="$( mktemp -d )"
-    printf "Created temporary work directory: '%s'\n" "$opt_dir"
-    if [ "$opt_delete" -eq 1 ]; then
-        printf "This directory will be deleted.\n"
-        printf "Cancel deletion with: kill -s HUP %d\n" "$$"
-    fi
 elif [ ! -d "$opt_dir" ]; then
     mkdir -p "$opt_dir"
-    printf "Created work directory: '%s'\n" "$opt_dir"
 fi
+
+if [ ! -d "$opt_dir" ]; then
+    printf "Failed to create/locate work directory\n"
+    exit 1
+fi
+
+printf "Using work directory: '%s'\n" "$opt_dir"
+
+if [ "$opt_delete" -eq 1 ]; then
+    printf "This directory will be deleted!\n"
+    printf "Cancel deletion with: kill -s HUP %d\n" "$$"
+fi
+
+# Install signal handlers.
 
 trap 'sighup_handler' HUP
 trap 'sigexit_handler' EXIT
