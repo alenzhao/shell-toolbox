@@ -5,11 +5,8 @@ scriptname="$0"
 show_usage () {
     cat <<USAGE_END
 Usage:
-
     $scriptname [-d] [-s shell] [dir]
-
     $scriptname -h
-
 USAGE_END
 }
 
