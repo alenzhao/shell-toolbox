@@ -4,7 +4,7 @@ NNAAMMEE
      ttsshh – Set up a minimal shell environment ("test shell").
 
 SSYYNNOOPPSSIISS
-     ttsshh [--dd] [--ss _s_h_e_l_l] [dir]
+     ttsshh [--dd] [--ss _s_h_e_l_l] [_d_i_r]
      ttsshh --hh
 
 DDEESSCCRRIIPPTTIIOONN
