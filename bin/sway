@@ -1,43 +1,46 @@
 #!/bin/sh
 
-show_usage () {
+usage () {
 cat <<USAGE_END
 Usage:
-    $0 -s N [-c N|-k] [-m N] ["cmd" | -p N]
+    $0 [-s HIGH] [-c LOW | -k] [-m N] cmd
+    $0 [-s HIGH] [-c LOW | -k] [-m N] -p pid
     $0 -h
 USAGE_END
 }
 
-opt_s="2.5" # high load
-opt_c="1.5" # low load
-opt_k=0     # kill
-opt_m=30    # monitor this often
-opt_p=""    # other pid
+opt_hi="2.5"    # high load
+opt_lo="1.5"    # low load
+opt_kill=0      # kill
+opt_monitor=30  # monitor this often
+opt_pid=""      # other pid
 
-while getopts 's:c:km:p:h' opt; do
+while getopts 'c:hkm:p:s:' opt; do
     case $opt in
-        s)  opt_s="$OPTARG" ;;
-        c)  opt_c="$OPTARG" ;;
-        k)  opt_k=1     ;;
-        m)  opt_m="$OPTARG" ;;
-        p)  opt_p="$OPTARG" ;;
-        h)  usage; exit 0   ;;
-        *)  usage; exit 1   ;;
+        c)  opt_lo="$OPTARG"        ;;
+        h)  usage; exit 0           ;;
+        k)  opt_kill=1              ;;
+        m)  opt_monitor="$OPTARG"   ;;
+        p)  opt_pid="$OPTARG"       ;;
+        s)  opt_hi="$OPTARG"        ;;
+        *)  usage; exit 1           ;;
     esac
 done
+
 shift $(( OPTIND - 1 ))
 
 cmd="$1"
 
-if [[ -z $cmd && -z $opt_p ]]; then
-    echo 'Expected "cmd" or "-p N"'
+if [ -z "$cmd" ] && [ -z "$opt_pid" ]; then
+    echo 'Expected "cmd" or "-p pid"'
     exit 1
-elif [[ -z $opt_p ]]; then
-    $cmd & cmd_pid=$!
+elif [ -z "$opt_pid" ]; then
+    $cmd &
+    cmd_pid=$!
 else
-    cmd_pid="$opt_p"
+    cmd_pid="$opt_pid"
 fi
 
 while true; do
-    sleep
+    sleep 10
 done
