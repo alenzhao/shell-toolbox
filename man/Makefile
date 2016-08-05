@@ -3,7 +3,7 @@
 
 MANDOC_FLAGS="-Ios=Unix"
 
-DOCS= tsh.mdoc
+DOCS= sway.mdoc tsh.mdoc
 
 all: $(DOCS:%.mdoc=%.txt) $(DOCS:%.mdoc=%.html) $(DOCS:%.mdoc=%.pdf)
 
