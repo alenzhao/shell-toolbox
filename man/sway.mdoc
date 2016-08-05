@@ -1,0 +1,88 @@
+.Dd $Mdocdate$
+.Dt SWAY 1
+.Os
+.Sh NAME
+.Nm sway
+.Nd Prevents a process from running when the system load is too high.
+.Sh SYNOPSIS
+.Nm
+.Op Fl s Ar HIGH
+.Op Fl c Ar LOW | Fl k
+.Op Fl m Ar N
+.Ar cmd
+.Nm
+.Op Fl s Ar HIGH
+.Op Fl c Ar LOW | Fl k
+.Op Fl m Ar N
+.Fl p Ar pid
+.Nm
+.Fl h
+.Sh DESCRIPTION
+The
+.Nm
+utility monitors the average system load and signals the specified
+process when the load reaches a certain level.
+.sp
+The process may be started by the utility, or it may be an already
+running process specified through its process ID.
+.sp
+The process will recieve a STOP signal when the load is too high.
+Alternatively, a TERM signal may be sent to terminate the process.  When
+the load has dropped below safe levels again, a CONT signal will be sent
+.Pq unless the process was terminated .
+.Bl -tag -width Ds
+.It Fl c Ar LOW
+Send a CONT signal to the process when the average system load goes
+beneath
+.Ar LOW .
+.sp
+By default,
+.Ar LOW
+will be approximately 60% of the upper load value specified with
+.Fl s Ar HIGH ,
+or 1.5 if that option is not used.
+.It Fl h
+Display brief usage information.
+.It Fl k
+Send a TERM signal to terminate the process at high load levels, rather
+than stopping it with a STOP signal.
+.sp
+If this option is used, this utility will exit after sending the signal.
+.It Fl m Ar N
+Monitor the average system load every
+.Ar N
+seconds.  The monitoring is done using the
+.Cm uptime
+command and is using the 5 minute load value.
+.sp
+By default, monitoring is done every 30 seconds.
+.It Fl p Ar pid
+Instead of signalling a process initiated by this utility, send the
+signals to the already running process whose process ID is
+.Ar pid .
+.It Fl s Ar HIGH
+Send the STOP signal
+.Po or TERM if
+.Fl k
+is used
+.Pc
+to the process if the average system load exceeds
+.Ar HIGH .
+.sp
+The default value for
+.Ar HIGH
+is 2.5.
+.It Ar cmd
+A command to run and manage.
+.El
+.Sh EXIT STATUS
+.Ex -std
+.\" .Sh EXAMPLES
+.\" .Sh DIAGNOSTICS
+.Sh SEE ALSO
+.Xr kill 1
+.Xr uptime 1
+.Sh AUTHORS
+Andreas Kusalananda Kähäri (kusalananada.kahari at gmail.com)
+.\" .Sh CAVEATS
+.\" .Sh BUGS
