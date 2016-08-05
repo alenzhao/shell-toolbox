@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
+table.head, table.foot { width: 100%; }
+td.head-rtitle, td.foot-os { text-align: right; }
+td.head-vol { text-align: center; }
+table.foot td { width: 50%; }
+table.head td { width: 33%; }
+div.spacer { margin: 1em 0; }
+</style>
+<title>
+SWAY(1)</title>
+</head>
+<body>
+<div class="mandoc">
+<table class="head">
+<tbody>
+<tr>
+<td class="head-ltitle">
+SWAY(1)</td>
+<td class="head-vol">
+General Commands Manual</td>
+<td class="head-rtitle">
+SWAY(1)</td>
+</tr>
+</tbody>
+</table>
+<div class="section">
+<h1 id="NAME">NAME</h1> <b class="name">sway</b> &#8212; <span class="desc">Prevents a process from running when the system load is too high.</span></div>
+<div class="section">
+<h1 id="SYNOPSIS">SYNOPSIS</h1><table class="synopsis">
+<col style="width: 4.00ex;"/>
+<col/>
+<tbody>
+<tr>
+<td>
+<b class="name">sway</b></td>
+<td>
+[<span class="opt"><b class="flag">-s</b> <i class="arg">HIGH</i></span>] [<span class="opt"><b class="flag">-c</b> <i class="arg">LOW</i> | <b class="flag">-k</b></span>] [<span class="opt"><b class="flag">-m</b> <i class="arg">N</i></span>] <i class="arg">cmd</i></td>
+</tr>
+</tbody>
+</table>
+<br/>
+<table class="synopsis">
+<col style="width: 4.00ex;"/>
+<col/>
+<tbody>
+<tr>
+<td>
+<b class="name">sway</b></td>
+<td>
+[<span class="opt"><b class="flag">-s</b> <i class="arg">HIGH</i></span>] [<span class="opt"><b class="flag">-c</b> <i class="arg">LOW</i> | <b class="flag">-k</b></span>] [<span class="opt"><b class="flag">-m</b> <i class="arg">N</i></span>] <b class="flag">-p</b> <i class="arg">pid</i></td>
+</tr>
+</tbody>
+</table>
+<br/>
+<table class="synopsis">
+<col style="width: 4.00ex;"/>
+<col/>
+<tbody>
+<tr>
+<td>
+<b class="name">sway</b></td>
+<td>
+<b class="flag">-h</b></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h1 id="DESCRIPTION">DESCRIPTION</h1> The <b class="name">sway</b> utility monitors the average system load and signals the specified process when the load reaches a certain level.<div style="height: 1.00em;">
+&#160;</div>
+The process may be started by the utility, or it may be an already running process specified through its process ID.<div style="height: 1.00em;">
+&#160;</div>
+The process will recieve a STOP signal when the load is too high. Alternatively, a TERM signal may be sent to terminate the process.  When the load has dropped below safe levels again, a CONT signal will be sent (unless the process was terminated).<dl style="margin-top: 0.00em;margin-bottom: 0.00em;" class="list list-tag">
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">-c</b> <i class="arg">LOW</i></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Send a CONT signal to the process when the average system load goes beneath <i class="arg">LOW</i>.<div style="height: 1.00em;">
+&#160;</div>
+By default, <i class="arg">LOW</i> will be approximately 60% of the upper load value specified with <b class="flag">-s</b> <i class="arg">HIGH</i>, or 1.5 if that option is not used.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">-h</b></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Display brief usage information.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">-k</b></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Send a TERM signal to terminate the process at high load levels, rather than stopping it with a STOP signal.<div style="height: 1.00em;">
+&#160;</div>
+If this option is used, this utility will exit after sending the signal.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">-m</b> <i class="arg">N</i></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Monitor the average system load every <i class="arg">N</i> seconds.  The monitoring is done using the <b class="flag">uptime</b> command and is using the 5 minute load value.<div style="height: 1.00em;">
+&#160;</div>
+By default, monitoring is done every 30 seconds.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">-p</b> <i class="arg">pid</i></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Instead of signalling a process initiated by this utility, send the signals to the already running process whose process ID is <i class="arg">pid</i>.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">-s</b> <i class="arg">HIGH</i></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Send the STOP signal (or TERM if <b class="flag">-k</b> is used) to the process if the average system load exceeds <i class="arg">HIGH</i>.<div style="height: 1.00em;">
+&#160;</div>
+The default value for <i class="arg">HIGH</i> is 2.5.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<i class="arg">cmd</i></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+A command to run and manage.</dd>
+</dl>
+</div>
+<div class="section">
+<h1 id="EXIT_STATUS">EXIT STATUS</h1> The <b class="utility">sway</b> utility exits&#160;0 on success, and&#160;&gt;0 if an error occurs.</div>
+<div class="section">
+<h1 id="SEE_ALSO">SEE ALSO</h1> <a class="link-man">kill(1)</a> <a class="link-man">uptime(1)</a></div>
+<div class="section">
+<h1 id="AUTHORS">AUTHORS</h1> Andreas Kusalananda K&#228;h&#228;ri (kusalananada.kahari at gmail.com)</div>
+<table class="foot">
+<tbody>
+<tr>
+<td class="foot-date">
+August 5, 2016</td>
+<td class="foot-os">
+Unix</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
+

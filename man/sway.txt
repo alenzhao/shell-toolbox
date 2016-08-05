@@ -1,0 +1,64 @@
+SWAY(1)                     General Commands Manual                    SWAY(1)
+
+NNAAMMEE
+     sswwaayy – Prevents a process from running when the system load is too high.
+
+SSYYNNOOPPSSIISS
+     sswwaayy [--ss _H_I_G_H] [--cc _L_O_W | --kk] [--mm _N] _c_m_d
+     sswwaayy [--ss _H_I_G_H] [--cc _L_O_W | --kk] [--mm _N] --pp _p_i_d
+     sswwaayy --hh
+
+DDEESSCCRRIIPPTTIIOONN
+     The sswwaayy utility monitors the average system load and signals the
+     specified process when the load reaches a certain level.
+
+     The process may be started by the utility, or it may be an already
+     running process specified through its process ID.
+
+     The process will recieve a STOP signal when the load is too high.
+     Alternatively, a TERM signal may be sent to terminate the process.  When
+     the load has dropped below safe levels again, a CONT signal will be sent
+     (unless the process was terminated).
+
+     --cc _L_O_W  Send a CONT signal to the process when the average system load
+             goes beneath _L_O_W.
+
+             By default, _L_O_W will be approximately 60% of the upper load value
+             specified with --ss _H_I_G_H, or 1.5 if that option is not used.
+
+     --hh      Display brief usage information.
+
+     --kk      Send a TERM signal to terminate the process at high load levels,
+             rather than stopping it with a STOP signal.
+
+             If this option is used, this utility will exit after sending the
+             signal.
+
+     --mm _N    Monitor the average system load every _N seconds.  The monitoring
+             is done using the uuppttiimmee command and is using the 5 minute load
+             value.
+
+             By default, monitoring is done every 30 seconds.
+
+     --pp _p_i_d  Instead of signalling a process initiated by this utility, send
+             the signals to the already running process whose process ID is
+             _p_i_d.
+
+     --ss _H_I_G_H
+             Send the STOP signal (or TERM if --kk is used) to the process if
+             the average system load exceeds _H_I_G_H.
+
+             The default value for _H_I_G_H is 2.5.
+
+     _c_m_d     A command to run and manage.
+
+EEXXIITT SSTTAATTUUSS
+     The sswwaayy utility exits 0 on success, and >0 if an error occurs.
+
+SSEEEE AALLSSOO
+     kill(1) uptime(1)
+
+AAUUTTHHOORRSS
+     Andreas Kusalananda Kähäri (kusalananada.kahari at gmail.com)
+
+Unix                            August 5, 2016                            Unix
