@@ -18,12 +18,18 @@
 The
 .Nm
 utility starts a new shell with minimal environment in a work directory.
+The minimal environment will have
+.Ev LC_ALL
+set to
+.Qq C
+but will, apart from that, be empty, unless modified by shell
+initialization scripts.
 .Bl -tag -width Ds
 .It Fl d
 Delete the work directory when exiting.
 .sp
 This is done using
-.Qq rm Fl rf Ar dir
+.Cm rm Fl rf Ar dir ,
 where
 .Ar dir
 is the work directory specified on the command line, or the temporary
@@ -54,17 +60,17 @@ If
 .Ar dir
 does not already exist, it will be created.
 .sp
-An empty temporary work directory will be created if no directory is
-specified.
+An empty temporary work directory will be created using
+.Cm mktemp Fl d
+if no directory is specified.
 .El
-.Sh ENVIRONMENT
-The environment is cleared and the invoked shell will have
-.Ev LC_ALL
-set to
-.Qq C
-by this utility.
-.\" .Sh FILES
 .Sh EXIT STATUS
 .Ex -std
 .\" .Sh EXAMPLES
 .\" .Sh DIAGNOSTICS
+.Sh SEE ALSO
+.Xr mktemp 1
+.Sh AUTHORS
+Andreas Kusalananda Kähäri (kusalananada.kahari at gmail.com)
+.\" .Sh CAVEATS
+.\" .Sh BUGS
