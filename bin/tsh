@@ -22,12 +22,12 @@ sigexit_handler () {
     fi
 }
 
-sighup_handler () {
-    # Signal handler for HUP.
+sigusr1_handler () {
+    # Signal handler for USR1.
     # Will set opt_delete=0.
 
     opt_delete=0
-    printf "SIGHUP received.\n"
+    printf "SIGUSR1 received.\n"
 }
 
 opt_dir=""
@@ -76,13 +76,13 @@ printf "Using work directory: '%s'\n" "$opt_dir"
 
 if [ "$opt_delete" -eq 1 ]; then
     printf "This directory will be deleted!\n"
-    printf "Cancel deletion with: kill -s HUP %d\n" "$$"
+    printf "Cancel deletion with: kill -s USR1 %d\n" "$$"
 fi
 
 # Install signal handlers.
 
-trap 'sighup_handler' HUP
 trap 'sigexit_handler' EXIT
+trap 'sigusr1_handler' USR1
 
 # Fire things up.
 
