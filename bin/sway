@@ -33,6 +33,7 @@ cmd="$1"
 
 if [ -z "$cmd" ] && [ -z "$opt_pid" ]; then
     echo 'Expected "cmd" or "-p pid"'
+    usage
     exit 1
 elif [ -z "$opt_pid" ]; then
     $cmd &
@@ -42,5 +43,9 @@ else
 fi
 
 while true; do
-    sleep 10
+    if ! is_running "$cmd_pid"; then
+        exit 0
+    fi
+
+    sleep "$opt_monitor"
 done
