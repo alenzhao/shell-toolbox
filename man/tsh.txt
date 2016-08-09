@@ -19,8 +19,8 @@ DDEESSCCRRIIPPTTIIOONN
              specified on the command line, or the temporary directory that
              was created if no directory was specified.
 
-             If the USR1 (hangup) signal is received, the work directory will
-             _n_o_t be deleted when exiting.
+             If the USR1 signal is received, the work directory will _n_o_t be
+             deleted when exiting.
 
      --hh      Display brief usage information.
 
