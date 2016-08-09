@@ -19,7 +19,7 @@ DDEESSCCRRIIPPTTIIOONN
              specified on the command line, or the temporary directory that
              was created if no directory was specified.
 
-             If the HUP (hangup) signal is received, the work directory will
+             If the USR1 (hangup) signal is received, the work directory will
              _n_o_t be deleted when exiting.
 
      --hh      Display brief usage information.
@@ -48,4 +48,4 @@ SSEEEE AALLSSOO
 AAUUTTHHOORRSS
      Andreas Kusalananda Kähäri (kusalananada.kahari at gmail.com)
 
-Unix                            August 5, 2016                            Unix
+Unix                            August 9, 2016                            Unix
