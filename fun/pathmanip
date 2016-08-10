@@ -1,0 +1,68 @@
+# Functions for ksh/bash that helps manipulate path variables, such as
+# PATH, MANPATH etc.
+
+function delete_from_path {
+    typeset -n variable="$1"
+    typeset value="$2"
+
+    if [[ "$variable" == "$value" ]]; then
+        variable=""
+    else
+        while [[ "$variable" == *:"$value":* ]] ||
+              [[ "$variable" == "$value":*   ]] ||
+              [[ "$variable" == *:"$value"   ]];
+        do
+            variable="${variable//:$value:/:}"
+            variable="${variable/#$value:/}"
+            variable="${variable/%:$value/}"
+        done
+    fi
+}
+
+function prefix_path
+{
+    typeset -n variable="$1"
+    typeset value="$2"
+
+    if [[ -z "$variable" ]]; then
+        variable="$value"
+    elif [[ "$variable" != "$value" ]]; then
+        delete_from_path variable "$value"
+        variable="$value:$variable"
+    fi
+}
+
+function suffix_path
+{
+    typeset -n variable="$1"
+    typeset value="$2"
+
+    if [[ -z "$variable" ]]; then
+        variable="$value"
+    elif [[ "$variable" != "$value" ]]; then
+        delete_from_path variable "$value"
+        variable="$variable:$value"
+    fi
+}
+
+function consolidate_path
+{
+    typeset -n variable="$1"
+
+    typeset IFS=':'
+    typeset tmpvar=""
+    typeset element
+
+    for element in $variable; do
+        if  [[ "$tmpvar" != *:"$element":* ]] &&
+            [[ "$tmpvar" != "$element":*   ]] &&
+            [[ "$tmpvar" != *:"$element"   ]]
+        then
+            suffix_path tmpvar "$element"
+        fi
+    done
+
+    variable="$tmpvar"
+}
+
+# vim: filetype=sh
