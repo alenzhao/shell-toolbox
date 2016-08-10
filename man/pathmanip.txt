@@ -1,0 +1,79 @@
+PATHMANIP(1)                General Commands Manual               PATHMANIP(1)
+
+NNAAMMEE
+     ppaatthhmmaanniipp – Provides a set of shell functions to manipulate path-type
+     shell variables.
+
+SSYYNNOOPPSSIISS
+     ssoouurrccee ppaatthhmmaanniipp
+     . ppaatthhmmaanniipp
+
+     ddeelleettee__ffrroomm__ppaatthh _v_a_r_i_a_b_l_e _v_a_l_u_e
+     pprreeffiixx__ppaatthh _v_a_r_i_a_b_l_e _v_a_l_u_e
+     ssuuffffiixx__ppaatthh _v_a_r_i_a_b_l_e _v_a_l_u_e
+     ccoonnssoolliiddaattee__ppaatthh _v_a_r_i_a_b_l_e
+
+     ppaatthhmmaanniipp --hh
+
+DDEESSCCRRIIPPTTIIOONN
+     ppaatthhmmaanniipp provides a tiny library of shell functions for Bash or
+     KornShell93 that may be used to manipulate shell variables containing
+     colon-separated paths, such as PATH, MANPATH and others.
+
+     The library needs to be sourced in the current shell to install the
+     functions in the environment.  This may be done using the ssoouurrccee or .
+     (dot) commands, either from the command line or from a shell
+     initialization script.
+
+     Once sourced, four shell functions will be available:
+
+     ddeelleettee__ffrroomm__ppaatthh
+                 Takes a variable name and a value (a path) and will remove
+                 any occurances of the value from the path held in the
+                 variable.
+
+     pprreeffiixx__ppaatthh
+                 Will add the given value to the beginning of the given
+                 variable, and will also remove any occurances of the value
+                 elsewhere in the path.
+
+     ssuuffffiixx__ppaatthh
+                 Like pprreeffiixx__ppaatthh but will add the value to the end of the the
+                 given variable.
+
+     consolidate_path
+                 Takes only a variable name and will remove duplicated entries
+                 from the path held by it.
+
+     --hh      If ppaatthhmmaanniipp is invoked as a script, --hh will display brief usage
+             information.
+     ppaatthhmmaanniipp.
+
+EEXXIITT SSTTAATTUUSS
+     The ppaatthhmmaanniipp utility exits 0 on success, and >0 if an error occurs.
+
+EEXXAAMMPPLLEESS
+     $ source pathmanip
+
+     $ p="a:b:c:d:b"
+
+     $ delete_from_path p "c"
+     $ echo "$p"
+     a:b:d:b
+
+     $ suffix_path p "a"
+     $ echo "$p"
+     b:d:b:a
+
+     $ prefix_path p "d"
+     $ echo "$p"
+     d:b:b:a
+
+     $ consolidate_path p
+     $ echo "$p"
+     d:b:a
+
+AAUUTTHHOORRSS
+     Andreas Kusalananda Kähäri (kusalananada.kahari at gmail.com)
+
+Unix                            August 10, 2016                           Unix
