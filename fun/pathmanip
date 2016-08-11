@@ -1,0 +1,100 @@
+#!/bin/bash
+
+# Functions for ksh/bash that helps manipulate path variables, such as
+# PATH, MANPATH etc.
+
+# This script shouldn't really be invoked as a script (it should be
+# sourced), but we'll do command line parsing none the less to see if
+# the user is using the "-h" flag (which should display usage info).
+
+# Note: We're uninstalling this function when we're done with it as to
+# not pollute the user's environment with useless functions.
+function usage {
+    cat <<USAGE_END
+Usage:
+    source $0
+    . $0
+
+    delete_from_path variable value
+    prefix_path variable value
+    suffix_path variable value
+    consolidate_path variable
+
+    $0 -h
+USAGE_END
+}
+
+while getopts 'h' opt; do
+    case "$opt" in
+        h)  usage; exit 0   ;;
+        *)  usage; exit 1   ;;
+    esac
+done
+
+unset -f usage
+
+function delete_from_path {
+    typeset -n _dfp_variable="$1"
+    typeset value="$2"
+
+    if [[ "$_dfp_variable" == "$value" ]]; then
+        variable=""
+    else
+        while [[ "$_dfp_variable" == *:"$value":* ]] ||
+              [[ "$_dfp_variable" == "$value":*   ]] ||
+              [[ "$_dfp_variable" == *:"$value"   ]];
+        do
+            _dfp_variable="${_dfp_variable//:$value:/:}"
+            _dfp_variable="${_dfp_variable/#$value:/}"
+            _dfp_variable="${_dfp_variable/%:$value/}"
+        done
+    fi
+}
+
+function prefix_path
+{
+    typeset -n _pp_variable="$1"
+    typeset value="$2"
+
+    if [[ -z "$_pp_variable" ]]; then
+        _pp_variable="$value"
+    elif [[ "$_pp_variable" != "$value" ]]; then
+        delete_from_path _pp_variable "$value"
+        _pp_variable="$value:$_pp_variable"
+    fi
+}
+
+function suffix_path
+{
+    typeset -n _sp_variable="$1"
+    typeset value="$2"
+
+    if [[ -z "$_sp_variable" ]]; then
+        _sp_variable="$value"
+    elif [[ "$_sp_variable" != "$value" ]]; then
+        delete_from_path _sp_variable "$value"
+        _sp_variable="$_sp_variable:$value"
+    fi
+}
+
+function consolidate_path
+{
+    typeset -n _cp_variable="$1"
+
+    typeset IFS=':'
+    typeset tmpvar=""
+    typeset element
+
+    for element in $_cp_variable; do
+        if  [[ "$tmpvar" != *:"$element":* ]] &&
+            [[ "$tmpvar" != "$element":*   ]] &&
+            [[ "$tmpvar" != *:"$element"   ]]
+        then
+            suffix_path tmpvar "$element"
+        fi
+    done
+
+    _cp_variable="$tmpvar"
+}
+
+# vim: filetype=sh

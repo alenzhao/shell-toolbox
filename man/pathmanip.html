@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
+table.head, table.foot { width: 100%; }
+td.head-rtitle, td.foot-os { text-align: right; }
+td.head-vol { text-align: center; }
+table.foot td { width: 50%; }
+table.head td { width: 33%; }
+div.spacer { margin: 1em 0; }
+</style>
+<title>
+PATHMANIP(1)</title>
+</head>
+<body>
+<div class="mandoc">
+<table class="head">
+<tbody>
+<tr>
+<td class="head-ltitle">
+PATHMANIP(1)</td>
+<td class="head-vol">
+General Commands Manual</td>
+<td class="head-rtitle">
+PATHMANIP(1)</td>
+</tr>
+</tbody>
+</table>
+<div class="section">
+<h1 id="NAME">NAME</h1> <b class="name">pathmanip</b> &#8212; <span class="desc">Provides a set of shell functions to manipulate path-type shell variables.</span></div>
+<div class="section">
+<h1 id="SYNOPSIS">SYNOPSIS</h1> <b class="flag">source</b> <b class="name">pathmanip</b><div style="height: 0.00em;">
+&#160;</div>
+<b class="flag">.</b> <b class="name">pathmanip</b><div style="height: 1.00em;">
+&#160;</div>
+<b class="flag">delete_from_path</b> <i class="arg">variable</i> <i class="arg">value</i><div style="height: 0.00em;">
+&#160;</div>
+<b class="flag">prefix_path</b> <i class="arg">variable</i> <i class="arg">value</i><div style="height: 0.00em;">
+&#160;</div>
+<b class="flag">suffix_path</b> <i class="arg">variable</i> <i class="arg">value</i><div style="height: 0.00em;">
+&#160;</div>
+<b class="flag">consolidate_path</b> <i class="arg">variable</i><div style="height: 1.00em;">
+&#160;</div>
+<br/>
+<table class="synopsis">
+<col style="width: 9.00ex;"/>
+<col/>
+<tbody>
+<tr>
+<td>
+<b class="name">pathmanip</b></td>
+<td>
+<b class="flag">-h</b></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h1 id="DESCRIPTION">DESCRIPTION</h1> <b class="name">pathmanip</b> provides a tiny library of shell functions for Bash or KornShell93 that may be used to manipulate shell variables containing colon-separated paths, such as <span class="env">PATH</span>, <span class="env">MANPATH</span> and others.<div style="height: 1.00em;">
+&#160;</div>
+The library needs to be sourced in the current shell to install the functions in the environment.  This may be done using the <b class="flag">source</b> or <b class="flag">.</b> (dot) commands, either from the command line or from a shell initialization script.<div style="height: 1.00em;">
+&#160;</div>
+Once sourced, four shell functions will be available:<dl style="margin-top: 0.00em;margin-bottom: 0.00em;" class="list list-tag">
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">delete_from_path</b></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Takes a variable name and a value (a path) and will remove any occurances of the value from the path held in the variable.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">prefix_path</b></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Will add the given value to the beginning of the given variable, and will also remove any occurances of the value elsewhere in the path.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">suffix_path</b></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Like <b class="flag">prefix_path</b> but will add the value to the end of the the given variable.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">consolidate_path</b></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+Takes only a variable name and will remove duplicated entries from the path held by it.</dd>
+<dt class="list-tag" style="margin-top: 1.00em;">
+<b class="flag">-h</b></dt>
+<dd class="list-tag" style="margin-left: 6.00ex;">
+If <b class="name">pathmanip</b> is invoked as a script, <b class="flag">-h</b> will display brief usage information.</dd>
+</dl>
+</div>
+<div class="section">
+<h1 id="EXIT_STATUS">EXIT STATUS</h1> The <b class="utility">pathmanip</b> utility exits&#160;0 on success, and&#160;&gt;0 if an error occurs.</div>
+<div class="section">
+<h1 id="EXAMPLES">EXAMPLES</h1><pre style="margin-left: 0.00ex;" class="lit display">
+$ source pathmanip 
+ 
+$ p=&quot;a:b:c:d:b&quot; 
+ 
+$ delete_from_path p &quot;c&quot; 
+$ echo &quot;$p&quot; 
+a:b:d:b 
+ 
+$ suffix_path p &quot;a&quot; 
+$ echo &quot;$p&quot; 
+b:d:b:a 
+ 
+$ prefix_path p &quot;d&quot; 
+$ echo &quot;$p&quot; 
+d:b:b:a 
+ 
+$ consolidate_path p 
+$ echo &quot;$p&quot; 
+d:b:a</pre>
+<div style="height: 1.00em;">
+&#160;</div>
+Typical usage in a shell initialization file:<div class="spacer">
+</div>
+<pre style="margin-left: 0.00ex;" class="lit display">
+prefix_path PATH &quot;$HOME/local/bin&quot; 
+consolidate_path PATH</pre>
+</div>
+<div class="section">
+<h1 id="AUTHORS">AUTHORS</h1> <span class="author">Andreas Kusalananda K&#228;h&#228;ri</span> &lt;<a class="link-mail" href="mailto:kusalananada.kahari">kusalananada.kahari</a> <a class="link-mail" href="mailto:at">at</a> <a class="link-mail" href="mailto:gmail.com">gmail.com</a>&gt;</div>
+<table class="foot">
+<tbody>
+<tr>
+<td class="foot-date">
+August 11, 2016</td>
+<td class="foot-os">
+Unix</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
+
