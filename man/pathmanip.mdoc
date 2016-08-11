@@ -37,7 +37,7 @@ or
 commands, either from the command line or from a shell initialization script.
 .sp
 Once sourced, four shell functions will be available:
-.Bl -tag
+.Bl -tag -width Ds
 .It Cm delete_from_path
 Takes a variable name and a value
 .Pq a path
@@ -50,11 +50,9 @@ will also remove any occurances of the value elsewhere in the path.
 Like
 .Cm prefix_path
 but will add the value to the end of the the given variable.
-.It consolidate_path
+.It Cm consolidate_path
 Takes only a variable name and will remove duplicated entries from the
 path held by it.
-.El
-.Bl -tag -width Ds
 .It Fl h
 If
 .Nm
@@ -64,7 +62,7 @@ will display brief usage information.
 .El
 .\" .Sh ENVIRONMENT
 .\" Any environment variables affecting the operation of
-.Nm .
+.\" .Nm .
 .\" .Sh FILES
 .Sh EXIT STATUS
 .Ex -std
