@@ -46,6 +46,6 @@ SSEEEE AALLSSOO
      mktemp(1)
 
 AAUUTTHHOORRSS
-     Andreas Kusalananda Kähäri (kusalananada.kahari at gmail.com)
+     Andreas Kusalananda Kähäri <_k_u_s_a_l_a_n_a_n_a_d_a_._k_a_h_a_r_i _a_t _g_m_a_i_l_._c_o_m>
 
-Unix                            August 9, 2016                            Unix
+Unix                            August 11, 2016                           Unix
