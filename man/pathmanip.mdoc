@@ -1,0 +1,103 @@
+.Dd $Mdocdate$
+.Dt PATHMANIP 1
+.Os
+.Sh NAME
+.Nm pathmanip
+.Nd Provides a set of shell functions to manipulate path-type shell variables.
+.Sh SYNOPSIS
+.Cm source Nm
+.br
+.Cm "." Nm
+.sp
+.Cm delete_from_path Ar variable Ar value
+.br
+.Cm prefix_path Ar variable Ar value
+.br
+.Cm suffix_path Ar variable Ar value
+.br
+.Cm consolidate_path Ar variable
+.sp
+.Nm
+.Fl h
+.Sh DESCRIPTION
+.Nm
+provides a tiny library of shell functions for Bash or KornShell93 that
+may be used to manipulate shell variables containing colon-separated
+paths, such as
+.Ev PATH ,
+.Ev MANPATH
+and others.
+.sp
+The library needs to be sourced in the current shell to install the
+functions in the environment.  This may be done using the
+.Cm source
+or
+.Cm "."
+.Pq dot
+commands, either from the command line or from a shell initialization script.
+.sp
+Once sourced, four shell functions will be available:
+.Bl -tag -width Ds
+.It Cm delete_from_path
+Takes a variable name and a value
+.Pq a path
+and will remove any occurances of the value from the path held in the
+variable.
+.It Cm prefix_path
+Will add the given value to the beginning of the given variable, and
+will also remove any occurances of the value elsewhere in the path.
+.It Cm suffix_path
+Like
+.Cm prefix_path
+but will add the value to the end of the the given variable.
+.It Cm consolidate_path
+Takes only a variable name and will remove duplicated entries from the
+path held by it.
+.It Fl h
+If
+.Nm
+is invoked as a script,
+.Fl h
+will display brief usage information.
+.El
+.\" .Sh ENVIRONMENT
+.\" Any environment variables affecting the operation of
+.\" .Nm .
+.\" .Sh FILES
+.Sh EXIT STATUS
+.Ex -std
+.Sh EXAMPLES
+.Bd -literal
+$ source pathmanip
+
+$ p="a:b:c:d:b"
+
+$ delete_from_path p "c"
+$ echo "$p"
+a:b:d:b
+
+$ suffix_path p "a"
+$ echo "$p"
+b:d:b:a
+
+$ prefix_path p "d"
+$ echo "$p"
+d:b:b:a
+
+$ consolidate_path p
+$ echo "$p"
+d:b:a
+.Ed
+.sp
+Typical usage in a shell initialization file:
+.Bd -literal
+prefix_path PATH "$HOME/local/bin"
+consolidate_path PATH
+.Ed
+.\" .Sh DIAGNOSTICS
+.\" .Sh SEE ALSO
+.\" .Xr mdoc 7
+.Sh AUTHORS
+.An Andreas Kusalananda Kähäri Aq Mt kusalananda.kahari at gmail.com
+.\" .Sh CAVEATS
+.\" .Sh BUGS

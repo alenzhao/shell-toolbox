@@ -9,39 +9,43 @@ SSYYNNOOPPSSIISS
 
 DDEESSCCRRIIPPTTIIOONN
      The ttsshh utility starts a new shell with minimal environment in a work
-     directory.
+     directory.  The minimal environment will have LC_ALL set to "C" but will,
+     apart from that, be empty, unless modified by shell initialization
+     scripts.
 
      --dd      Delete the work directory when exiting.
 
-             This is done using "rm -rf dir" where "dir" is the work directory
+             This is done using rrmm --rrff _d_i_r, where _d_i_r is the work directory
              specified on the command line, or the temporary directory that
              was created if no directory was specified.
 
-             If the HUP (hangup) signal is received, the work directory will
-             _n_o_t be deleted when exiting.
+             If the USR1 signal is received, the work directory will _n_o_t be
+             deleted when exiting.
 
-     --hh      Displays brief usage information.
+     --hh      Display brief usage information.
 
      --ss _s_h_e_l_l
-             Starts shell "shell".
+             Start shell _s_h_e_l_l.
 
              The shell is required to be an absolute path listed in
-             "/etc/shells".
+             _/_e_t_c_/_s_h_e_l_l_s.
 
-             Defaults to "/bin/sh".
+             Defaults to _/_b_i_n_/_s_h.
 
-     _d_i_r     Use work directory "dir".
+     _d_i_r     Use work directory _d_i_r.
 
-             If "dir" does not already exist, it will be created.
+             If _d_i_r does not already exist, it will be created.
 
-             An empty temporary work directory will be created if no directory
-             is specified.
-
-EENNVVIIRROONNMMEENNTT
-     The environment is cleared and the invoked shell will have LC_ALL set to
-     "C" by this utility.
+             An empty temporary work directory will be created using mmkktteemmpp --dd
+             if no directory is specified.
 
 EEXXIITT SSTTAATTUUSS
      The ttsshh utility exits 0 on success, and >0 if an error occurs.
 
-Unix                            August 4, 2016                            Unix
+SSEEEE AALLSSOO
+     mktemp(1)
+
+AAUUTTHHOORRSS
+     Andreas Kusalananda Kähäri <_k_u_s_a_l_a_n_a_n_d_a_._k_a_h_a_r_i _a_t _g_m_a_i_l_._c_o_m>
+
+Unix                            August 11, 2016                           Unix

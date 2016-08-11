@@ -8,7 +8,7 @@
 .Qq test shell
 .Pc .
 .Sh SYNOPSIS
-.Nm tsh
+.Nm
 .Op Fl d
 .Op Fl s Ar shell
 .Op Ar dir
@@ -18,53 +18,56 @@
 The
 .Nm
 utility starts a new shell with minimal environment in a work directory.
+The minimal environment will have
+.Ev LC_ALL
+set to
+.Qq C
+but will, apart from that, be empty, unless modified by shell
+initialization scripts.
 .Bl -tag -width Ds
 .It Fl d
 Delete the work directory when exiting.
 .sp
 This is done using
-.Qq rm -rf dir
+.Cm rm Fl rf Ar dir ,
 where
-.Qq dir
+.Ar dir
 is the work directory specified on the command line, or the temporary
 directory that was created if no directory was specified.
 .sp
-If the HUP
-.Pq hangup
-signal is received, the work
-directory will
+If the USR1 signal is received, the work directory will
 .Em not
 be deleted when exiting.
 .It Fl h
-Displays brief usage information.
+Display brief usage information.
 .It Fl s Ar shell
-Starts shell
-.Qq shell .
+Start shell
+.Ar shell .
 .sp
 The shell is required to be an absolute path listed in
-.Qq /etc/shells .
+.Pa /etc/shells .
 .sp
 Defaults to
-.Qq /bin/sh .
+.Pa /bin/sh .
 .It Ar dir
 Use work directory
-.Qq dir .
+.Ar dir .
 .sp
 If
-.Qq dir
+.Ar dir
 does not already exist, it will be created.
 .sp
-An empty temporary work directory will be created if no directory is
-specified.
+An empty temporary work directory will be created using
+.Cm mktemp Fl d
+if no directory is specified.
 .El
-.Sh ENVIRONMENT
-The environment is cleared and the invoked shell will have
-.Ev LC_ALL
-set to
-.Qq C
-by this utility.
-.\" .Sh FILES
 .Sh EXIT STATUS
 .Ex -std
 .\" .Sh EXAMPLES
 .\" .Sh DIAGNOSTICS
+.Sh SEE ALSO
+.Xr mktemp 1
+.Sh AUTHORS
+.An Andreas Kusalananda Kähäri Aq Mt kusalananda.kahari at gmail.com
+.\" .Sh CAVEATS
+.\" .Sh BUGS

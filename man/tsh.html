@@ -57,46 +57,48 @@ TSH(1)</td>
 </table>
 </div>
 <div class="section">
-<h1 id="DESCRIPTION">DESCRIPTION</h1> The <b class="name">tsh</b> utility starts a new shell with minimal environment in a work directory.<dl style="margin-top: 0.00em;margin-bottom: 0.00em;" class="list list-tag">
+<h1 id="DESCRIPTION">DESCRIPTION</h1> The <b class="name">tsh</b> utility starts a new shell with minimal environment in a work directory. The minimal environment will have <span class="env">LC_ALL</span> set to &#8220;C&#8221; but will, apart from that, be empty, unless modified by shell initialization scripts.<dl style="margin-top: 0.00em;margin-bottom: 0.00em;" class="list list-tag">
 <dt class="list-tag" style="margin-top: 1.00em;">
 <b class="flag">-d</b></dt>
 <dd class="list-tag" style="margin-left: 6.00ex;">
 Delete the work directory when exiting.<div style="height: 1.00em;">
 &#160;</div>
-This is done using &#8220;rm -rf dir&#8221; where &#8220;dir&#8221; is the work directory specified on the command line, or the temporary directory that was created if no directory was specified.<div style="height: 1.00em;">
+This is done using <b class="flag">rm</b> <b class="flag">-rf</b> <i class="arg">dir</i>, where <i class="arg">dir</i> is the work directory specified on the command line, or the temporary directory that was created if no directory was specified.<div style="height: 1.00em;">
 &#160;</div>
-If the HUP (hangup) signal is received, the work directory will <span class="emph">not</span> be deleted when exiting.</dd>
+If the USR1 signal is received, the work directory will <span class="emph">not</span> be deleted when exiting.</dd>
 <dt class="list-tag" style="margin-top: 1.00em;">
 <b class="flag">-h</b></dt>
 <dd class="list-tag" style="margin-left: 6.00ex;">
-Displays brief usage information.</dd>
+Display brief usage information.</dd>
 <dt class="list-tag" style="margin-top: 1.00em;">
 <b class="flag">-s</b> <i class="arg">shell</i></dt>
 <dd class="list-tag" style="margin-left: 6.00ex;">
-Starts shell &#8220;shell&#8221;.<div style="height: 1.00em;">
+Start shell <i class="arg">shell</i>.<div style="height: 1.00em;">
 &#160;</div>
-The shell is required to be an absolute path listed in &#8220;/etc/shells&#8221;.<div style="height: 1.00em;">
+The shell is required to be an absolute path listed in <i class="file">/etc/shells</i>.<div style="height: 1.00em;">
 &#160;</div>
-Defaults to &#8220;/bin/sh&#8221;.</dd>
+Defaults to <i class="file">/bin/sh</i>.</dd>
 <dt class="list-tag" style="margin-top: 1.00em;">
 <i class="arg">dir</i></dt>
 <dd class="list-tag" style="margin-left: 6.00ex;">
-Use work directory &#8220;dir&#8221;.<div style="height: 1.00em;">
+Use work directory <i class="arg">dir</i>.<div style="height: 1.00em;">
 &#160;</div>
-If &#8220;dir&#8221; does not already exist, it will be created.<div style="height: 1.00em;">
+If <i class="arg">dir</i> does not already exist, it will be created.<div style="height: 1.00em;">
 &#160;</div>
-An empty temporary work directory will be created if no directory is specified.</dd>
+An empty temporary work directory will be created using <b class="flag">mktemp</b> <b class="flag">-d</b> if no directory is specified.</dd>
 </dl>
 </div>
 <div class="section">
-<h1 id="ENVIRONMENT">ENVIRONMENT</h1> The environment is cleared and the invoked shell will have <span class="env">LC_ALL</span> set to &#8220;C&#8221; by this utility.</div>
-<div class="section">
 <h1 id="EXIT_STATUS">EXIT STATUS</h1> The <b class="utility">tsh</b> utility exits&#160;0 on success, and&#160;&gt;0 if an error occurs.</div>
+<div class="section">
+<h1 id="SEE_ALSO">SEE ALSO</h1> <a class="link-man">mktemp(1)</a></div>
+<div class="section">
+<h1 id="AUTHORS">AUTHORS</h1> <span class="author">Andreas Kusalananda K&#228;h&#228;ri</span> &lt;<a class="link-mail" href="mailto:kusalananda.kahari">kusalananda.kahari</a> <a class="link-mail" href="mailto:at">at</a> <a class="link-mail" href="mailto:gmail.com">gmail.com</a>&gt;</div>
 <table class="foot">
 <tbody>
 <tr>
 <td class="foot-date">
-August 4, 2016</td>
+August 11, 2016</td>
 <td class="foot-os">
 Unix</td>
 </tr>
