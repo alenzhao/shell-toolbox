@@ -6,7 +6,7 @@ NNAAMMEE
 
 SSYYNNOOPPSSIISS
      ssoouurrccee ppaatthhmmaanniipp
-     . ppaatthhmmaanniipp
+     .. ppaatthhmmaanniipp
 
      ddeelleettee__ffrroomm__ppaatthh _v_a_r_i_a_b_l_e _v_a_l_u_e
      pprreeffiixx__ppaatthh _v_a_r_i_a_b_l_e _v_a_l_u_e
@@ -21,7 +21,7 @@ DDEESSCCRRIIPPTTIIOONN
      colon-separated paths, such as PATH, MANPATH and others.
 
      The library needs to be sourced in the current shell to install the
-     functions in the environment.  This may be done using the ssoouurrccee or .
+     functions in the environment.  This may be done using the ssoouurrccee or ..
      (dot) commands, either from the command line or from a shell
      initialization script.
 
@@ -77,6 +77,6 @@ EEXXAAMMPPLLEESS
      consolidate_path PATH
 
 AAUUTTHHOORRSS
-     Andreas Kusalananda Kähäri (kusalananada.kahari at gmail.com)
+     Andreas Kusalananda Kähäri <_k_u_s_a_l_a_n_a_n_a_d_a_._k_a_h_a_r_i _a_t _g_m_a_i_l_._c_o_m>
 
 Unix                            August 11, 2016                           Unix
