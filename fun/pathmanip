@@ -2,58 +2,58 @@
 # PATH, MANPATH etc.
 
 function delete_from_path {
-    typeset -n variable="$1"
+    typeset -n _dfp_variable="$1"
     typeset value="$2"
 
-    if [[ "$variable" == "$value" ]]; then
+    if [[ "$_dfp_variable" == "$value" ]]; then
         variable=""
     else
-        while [[ "$variable" == *:"$value":* ]] ||
-              [[ "$variable" == "$value":*   ]] ||
-              [[ "$variable" == *:"$value"   ]];
+        while [[ "$_dfp_variable" == *:"$value":* ]] ||
+              [[ "$_dfp_variable" == "$value":*   ]] ||
+              [[ "$_dfp_variable" == *:"$value"   ]];
         do
-            variable="${variable//:$value:/:}"
-            variable="${variable/#$value:/}"
-            variable="${variable/%:$value/}"
+            _dfp_variable="${_dfp_variable//:$value:/:}"
+            _dfp_variable="${_dfp_variable/#$value:/}"
+            _dfp_variable="${_dfp_variable/%:$value/}"
         done
     fi
 }
 
 function prefix_path
 {
-    typeset -n variable="$1"
+    typeset -n _pp_variable="$1"
     typeset value="$2"
 
-    if [[ -z "$variable" ]]; then
-        variable="$value"
-    elif [[ "$variable" != "$value" ]]; then
-        delete_from_path variable "$value"
-        variable="$value:$variable"
+    if [[ -z "$_pp_variable" ]]; then
+        _pp_variable="$value"
+    elif [[ "$_pp_variable" != "$value" ]]; then
+        delete_from_path _pp_variable "$value"
+        _pp_variable="$value:$_pp_variable"
     fi
 }
 
 function suffix_path
 {
-    typeset -n variable="$1"
+    typeset -n _sp_variable="$1"
     typeset value="$2"
 
-    if [[ -z "$variable" ]]; then
-        variable="$value"
-    elif [[ "$variable" != "$value" ]]; then
-        delete_from_path variable "$value"
-        variable="$variable:$value"
+    if [[ -z "$_sp_variable" ]]; then
+        _sp_variable="$value"
+    elif [[ "$_sp_variable" != "$value" ]]; then
+        delete_from_path _sp_variable "$value"
+        _sp_variable="$_sp_variable:$value"
     fi
 }
 
 function consolidate_path
 {
-    typeset -n variable="$1"
+    typeset -n _cp_variable="$1"
 
     typeset IFS=':'
     typeset tmpvar=""
     typeset element
 
-    for element in $variable; do
+    for element in $_cp_variable; do
         if  [[ "$tmpvar" != *:"$element":* ]] &&
             [[ "$tmpvar" != "$element":*   ]] &&
             [[ "$tmpvar" != *:"$element"   ]]
@@ -62,7 +62,7 @@ function consolidate_path
         fi
     done
 
-    variable="$tmpvar"
+    _cp_variable="$tmpvar"
 }
 
 # vim: filetype=sh
