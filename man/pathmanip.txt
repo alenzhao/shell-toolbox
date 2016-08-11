@@ -28,26 +28,24 @@ DDEESSCCRRIIPPTTIIOONN
      Once sourced, four shell functions will be available:
 
      ddeelleettee__ffrroomm__ppaatthh
-                 Takes a variable name and a value (a path) and will remove
-                 any occurances of the value from the path held in the
-                 variable.
+             Takes a variable name and a value (a path) and will remove any
+             occurances of the value from the path held in the variable.
 
      pprreeffiixx__ppaatthh
-                 Will add the given value to the beginning of the given
-                 variable, and will also remove any occurances of the value
-                 elsewhere in the path.
+             Will add the given value to the beginning of the given variable,
+             and will also remove any occurances of the value elsewhere in the
+             path.
 
      ssuuffffiixx__ppaatthh
-                 Like pprreeffiixx__ppaatthh but will add the value to the end of the the
-                 given variable.
+             Like pprreeffiixx__ppaatthh but will add the value to the end of the the
+             given variable.
 
-     consolidate_path
-                 Takes only a variable name and will remove duplicated entries
-                 from the path held by it.
+     ccoonnssoolliiddaattee__ppaatthh
+             Takes only a variable name and will remove duplicated entries
+             from the path held by it.
 
      --hh      If ppaatthhmmaanniipp is invoked as a script, --hh will display brief usage
              information.
-     ppaatthhmmaanniipp.
 
 EEXXIITT SSTTAATTUUSS
      The ppaatthhmmaanniipp utility exits 0 on success, and >0 if an error occurs.
