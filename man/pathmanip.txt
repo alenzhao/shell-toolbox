@@ -73,7 +73,12 @@ EEXXAAMMPPLLEESS
      $ echo "$p"
      d:b:a
 
+     Typical usage in a shell initialization file:
+
+     prefix_path PATH "$HOME/local/bin"
+     consolidate_path PATH
+
 AAUUTTHHOORRSS
      Andreas Kusalananda Kähäri (kusalananada.kahari at gmail.com)
 
-Unix                            August 10, 2016                           Unix
+Unix                            August 11, 2016                           Unix

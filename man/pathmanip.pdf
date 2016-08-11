@@ -1282,7 +1282,7 @@ ET
 BT
 /F0 11 Tf
 305.459 36.234 Td
-(10,) Tj
+(11,) Tj
 ET
 BT
 /F0 11 Tf
@@ -1577,51 +1577,111 @@ BT
 81.763 379.665 Td
 (d:b:a) Tj
 ET
+BT
+/F0 11 Tf
+81.763 348.887 Td
+(Typical) Tj
+ET
+BT
+/F0 11 Tf
+118.118 348.887 Td
+(usage) Tj
+ET
+BT
+/F0 11 Tf
+145.915 348.887 Td
+(in) Tj
+ET
+BT
+/F0 11 Tf
+157.223 348.887 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+164.857 348.887 Td
+(shell) Tj
+ET
+BT
+/F0 11 Tf
+188.386 348.887 Td
+(initialization) Tj
+ET
+BT
+/F0 11 Tf
+246.752 348.887 Td
+(file:) Tj
+ET
+BT
+/F0 11 Tf
+81.763 318.109 Td
+(prefix_path) Tj
+ET
+BT
+/F0 11 Tf
+135.223 318.109 Td
+(PATH) Tj
+ET
+BT
+/F0 11 Tf
+166.694 318.109 Td
+("$HOME/local/bin") Tj
+ET
+BT
+/F0 11 Tf
+81.763 302.720 Td
+(consolidate_path) Tj
+ET
+BT
+/F0 11 Tf
+159.060 302.720 Td
+(PATH) Tj
+ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-68.013 348.887 Td
+68.013 271.942 Td
 (AUTHORS) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-81.763 333.498 Td
+81.763 256.553 Td
 (Andreas) Tj
 ET
 BT
 /F0 11 Tf
-121.165 333.498 Td
+121.165 256.553 Td
 (Kusalananda) Tj
 ET
 BT
 /F0 11 Tf
-180.730 333.498 Td
+180.730 256.553 Td
 (K") Tj
 ET
 BT
 /F0 11 Tf
-188.672 333.498 Td
+188.672 256.553 Td
 (ah") Tj
 ET
 BT
 /F0 11 Tf
-199.056 333.498 Td
+199.056 256.553 Td
 (ari) Tj
 ET
 BT
 /F0 11 Tf
-213.411 333.498 Td
+213.411 256.553 Td
 (\(kusalananada.kahari) Tj
 ET
 BT
 /F0 11 Tf
-309.320 333.498 Td
+309.320 256.553 Td
 (at) Tj
 ET
 BT
 /F0 11 Tf
-320.012 333.498 Td
+320.012 256.553 Td
 (gmail.com\)) Tj
 ET
 /F0 11 Tf
@@ -1663,7 +1723,7 @@ ET
 BT
 /F0 11 Tf
 305.459 36.234 Td
-(10,) Tj
+(11,) Tj
 ET
 BT
 /F0 11 Tf
@@ -1679,7 +1739,7 @@ ET
 endstream
 endobj
 12 0 obj
-3231
+3811
 endobj
 13 0 obj
 <<
@@ -1716,7 +1776,7 @@ xref
 0 16
 0000000000 65535 f 
 0000000009 00000 n 
-0000015621 00000 n 
+0000016201 00000 n 
 0000000030 00000 n 
 0000000105 00000 n 
 0000000179 00000 n 
@@ -1726,10 +1786,10 @@ xref
 0000011974 00000 n 
 0000012062 00000 n 
 0000012143 00000 n 
-0000015428 00000 n 
-0000015449 00000 n 
-0000015538 00000 n 
-0000015711 00000 n 
+0000016008 00000 n 
+0000016029 00000 n 
+0000016118 00000 n 
+0000016291 00000 n 
 trailer
 <<
 /Size 16
@@ -1737,5 +1797,5 @@ trailer
 /Info 1 0 R
 >>
 startxref
-15754
+16334
 %%EOF
