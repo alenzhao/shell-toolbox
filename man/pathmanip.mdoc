@@ -90,6 +90,12 @@ $ consolidate_path p
 $ echo "$p"
 d:b:a
 .Ed
+.sp
+Typical usage in a shell initialization file:
+.Bd -literal
+prefix_path PATH "$HOME/local/bin"
+consolidate_path PATH
+.Ed
 .\" .Sh DIAGNOSTICS
 .\" .Sh SEE ALSO
 .\" .Xr mdoc 7
