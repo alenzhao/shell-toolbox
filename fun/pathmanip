@@ -38,7 +38,7 @@ function delete_from_path {
     typeset value="$2"
 
     if [[ "$_dfp_variable" == "$value" ]]; then
-        variable=""
+        _dfp_variable=""
     else
         while [[ "$_dfp_variable" == *:"$value":* ]] ||
               [[ "$_dfp_variable" == "$value":*   ]] ||
