@@ -15,7 +15,7 @@ on the [Unix & Linux](http://unix.stackexchange.com/) and
     executable scripts.
 
 - `fun`:
-    (will possibly contain) `ksh` shell functions.
+    `ksh` and/or `bash` shell functions.
 
 - `man`:
     manuals for the executables and functions in mandoc, text, HTML and
@@ -44,6 +44,9 @@ on the [Unix & Linux](http://unix.stackexchange.com/) and
 
 - `bin/tsh`:
     Sets up a minimal shell test environment in a working directory.
+
+- `fun/pathmanip`:
+    Shell functions for easy manipulation of `PATH`-type shell variables.
 
 ## Documentation
 
